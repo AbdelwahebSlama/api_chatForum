@@ -92,7 +92,7 @@ module.exports = {
             }
         });
     },
-    register: async( req, res, next) => {
+    register: async (req, res, next) => {
         //params
         // Params
         var email = req.body.email;
@@ -100,9 +100,6 @@ module.exports = {
         var password = req.body.password;
         var firstname = req.body.firstname;
         var groupId = req.body.groupId;
-        var path = req.image;
-        console.log("imaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaage        " , path);
-
         if (email == null || username == null || password == null) {
             return res.status(400).json({'error': 'missing parameters'});
         }
@@ -186,71 +183,71 @@ module.exports = {
         });
     },
     getUserProfile: async (req, res, next) => {
-    // Getting auth header
-    var headerAuth = req.headers['authorization'];
-    var userId = jwtUtils.getUserId(headerAuth);
+        // Getting auth header
+        var headerAuth = req.headers['authorization'];
+        var userId = jwtUtils.getUserId(headerAuth);
 
-    if (userId < 0)
-        return res.status(400).json({'error': 'wrong token'});
-    // console.log(userId)
-    models.findOne(
-        {_id: userId}
-    ).then(function (user) {
-        if (user) {
-            res.status(201).json(user);
-        } else {
-            res.status(404).json({'error': 'user not found'});
-        }
-    }).catch(function (err) {
-        res.status(500).json({'error': 'cannot fetch user'});
-    });
-},
-    updateUserProfile: async (req, res, next) => {
-    // Getting auth header
-    var headerAuth = req.headers['authorization'];
-    var userId = jwtUtils.getUserId(headerAuth);
-
-    // Params
-    var email = req.body.email;
-    var username = req.body.name;
-    var password = req.body.password;
-    var firstname = req.body.firstname;
-
-
-    asyncLib.waterfall([
-        function (done) {
-            models.findOne(
-                {_id: userId}
-            ).then(function (userFound) {
-                done(null, userFound);
-            })
-                .catch(function (err) {
-                    return res.status(500).json({'error': 'unable to verify user'});
-                });
-        },
-        function (userFound, done) {
-            if (userFound) {
-                userFound.update({
-                    name: (username ? username : userFound.username),
-                    firstname: (firstname ? firstname : userFound.firstname),
-                    email: (email ? email : userFound.email),
-                    password: (password ? password : userFound.password)
-
-                }).then(function () {
-                    done(userFound);
-                }).catch(function (err) {
-                    res.status(500).json({'error': 'cannot update user'});
-                });
+        if (userId < 0)
+            return res.status(400).json({'error': 'wrong token'});
+        // console.log(userId)
+        models.findOne(
+            {_id: userId}
+        ).then(function (user) {
+            if (user) {
+                res.status(201).json(user);
             } else {
                 res.status(404).json({'error': 'user not found'});
             }
-        },
-    ], function (userFound) {
-        if (userFound) {
-            return res.status(201).json(userFound);
-        } else {
-            return res.status(500).json({'error': 'cannot update user profile'});
-        }
-    });
-}
+        }).catch(function (err) {
+            res.status(500).json({'error': 'cannot fetch user'});
+        });
+    },
+    updateUserProfile: async (req, res, next) => {
+        // Getting auth header
+        var headerAuth = req.headers['authorization'];
+        var userId = jwtUtils.getUserId(headerAuth);
+
+        // Params
+        var email = req.body.email;
+        var username = req.body.name;
+        var password = req.body.password;
+        var firstname = req.body.firstname;
+
+
+        asyncLib.waterfall([
+            function (done) {
+                models.findOne(
+                    {_id: userId}
+                ).then(function (userFound) {
+                    done(null, userFound);
+                })
+                    .catch(function (err) {
+                        return res.status(500).json({'error': 'unable to verify user'});
+                    });
+            },
+            function (userFound, done) {
+                if (userFound) {
+                    userFound.update({
+                        name: (username ? username : userFound.username),
+                        firstname: (firstname ? firstname : userFound.firstname),
+                        email: (email ? email : userFound.email),
+                        password: (password ? password : userFound.password)
+
+                    }).then(function () {
+                        done(userFound);
+                    }).catch(function (err) {
+                        res.status(500).json({'error': 'cannot update user'});
+                    });
+                } else {
+                    res.status(404).json({'error': 'user not found'});
+                }
+            },
+        ], function (userFound) {
+            if (userFound) {
+                return res.status(201).json(userFound);
+            } else {
+                return res.status(500).json({'error': 'cannot update user profile'});
+            }
+        });
+    }
 }

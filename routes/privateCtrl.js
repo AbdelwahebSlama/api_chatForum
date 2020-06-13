@@ -16,7 +16,6 @@ module.exports = {
     // Getting auth header
     var headerAuth  = req.headers['authorization'];
     var userId      = jwtUtils.getUserId(headerAuth);
-
     // Params
     var title   = req.body.title;
     var content = req.body.content;

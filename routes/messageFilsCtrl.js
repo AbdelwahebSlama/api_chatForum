@@ -124,16 +124,3 @@ module.exports = {
         });
     }
 }
-
-/**
- console.log(newMessage);
- const m =  msg.findById(newMessage.messageId);
- m.comments.push(newMessage);
- save()
- console.log(m)//*/
-//const  m = new msg();
-//   m.comments.push(newMessage);
-//  m.execPopulate(m.comments)
-//  msg.update({}, {$set: {comments: [{id_comment: (newMessage)}]}
-
-//  }).exec()

@@ -1,4 +1,3 @@
-
 var asyncLib = require('async');
 var express = require("express");
 var multer = require('multer');
@@ -30,16 +29,16 @@ var upload = multer({
 }).single("file");
 
 module.exports = {
-    upload: function (req , res) {
-        upload(req,res,function(err) {
+    upload: function (req, res) {
+        upload(req, res, function (err) {
             console.log(req.file);
-            if(err) {
+            if (err) {
                 console.log('errrrrrrrrrrrrrrrrrrrrrrrrre');
                 // return res.end(" ");
-              return   res.status(404).json({'error': 'Error uploading file.'});
+                return res.status(404).json({'error': 'Error uploading file.'});
             }
             // res.end("File is uploaded");
-           return  res.status(200).json({'reuc': 'File is uploaded'});
+            return res.status(200).json({'reuc': 'File is uploaded'});
             console.log(req.file);
         });
         // res.end("File is uploaded");

@@ -57,12 +57,12 @@ io.on('connection', (socket) => {
             ],
             function (userFound) {
                 if (userFound) {
-                   console.log("us connected", userFound);
-                   userFound.active = 1;
-                   userFound.save();
-                   // userFound.save;
+                    console.log("us connected", userFound);
+                    userFound.active = 1;
+                    userFound.save();
+                    // userFound.save;
                     save;
-                   console.log("userfoun sattus ", userFound.active);
+                    console.log("userfoun sattus ", userFound.active);
                     socket.broadcast.to(data.room).emit('new user joined', {
                         user: userFound,
                         message: ' has joined this group ' + data.room
@@ -136,7 +136,7 @@ io.on('connection', (socket) => {
                     io.in(data.room).emit(data.room).emit('erreur_message', {erreur: 'cannot post message'});
                 }
             });
-            // io.in(socket.room).emit('new_message', {message : data.message, username : socket.username});
+
         }
     });
     /**

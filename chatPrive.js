@@ -87,8 +87,8 @@ io.on('connection', (socket) => {
                             }
                         }
                     );
-                }else {
-                    const newRoom =  roomFound;
+                } else {
+                    const newRoom = roomFound;
                     done(newRoom);
                 }
             },
@@ -103,9 +103,9 @@ io.on('connection', (socket) => {
                     }
                 )
                     .then(function (newRoom) {
-                        if(newRoom){
+                        if (newRoom) {
                             socket.username = newRoom.UserIdSender;
-                        }else {
+                        } else {
                             socket.username = newRoom.UserIdReciver
                         }
                     });
@@ -115,9 +115,9 @@ io.on('connection', (socket) => {
                     }
                 )
                     .then(function (newRoom) {
-                        if(newRoom){
+                        if (newRoom) {
                             socket.username = newRoom.UserIdReciver
-                        }else {
+                        } else {
                             socket.username = newRoom.UserIdSender;
                         }
                     });
@@ -126,7 +126,7 @@ io.on('connection', (socket) => {
                 return newRoom;
             }
         });
-      });
+    });
     console.log('New user connected');
     /******************************************************************************************************************/
     socket.username = "Anonymous"
