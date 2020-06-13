@@ -1,0 +1,38 @@
+{
+  "name": "retro-server",
+  "version": "1.0.0",
+  "description": "Serveur HTTP pour api REST",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "server.http.api.rest"
+  ],
+  "author": "mezni ilyes",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "morgan": "^1.10.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "serve-favicon": "^2.5.0",
+    "async": "^3.2.0",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "multer": "1.1.0",
+    "express-hbs": "^2.3.3",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.10",
+    "mongoose-unique-validator": "^2.0.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.3",
+    "sequelize": "^5.5.1",
+    "sequelize-cli": "^5.5.1"
+  }
+}
